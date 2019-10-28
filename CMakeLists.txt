@@ -71,14 +71,16 @@ set(PROJECT_PREFIX ${PROJECT_NAME}-${${PROJECT_NAME}_VERSION})
 target_include_directories(cxxopts
     INTERFACE
         $<BUILD_INTERFACE:${${PROJECT_NAME}_SOURCE_DIR}/include>
-        $<INSTALL_INTERFACE:include/${PROJECT_PREFIX}>
+        $<INSTALL_INTERFACE:include>
     )
 
+include(GNUInstallDirs)
+
 set(install_runtime_dir ${CMAKE_INSTALL_BINDIR})
-set(install_config_dir  ${CMAKE_INSTALL_LIBDIR}/${PROJECT_PREFIX}/cmake)
-set(install_library_dir ${CMAKE_INSTALL_LIBDIR}/${PROJECT_PREFIX}/${CMAKE_BUILD_TYPE})
-set(install_archive_dir ${CMAKE_INSTALL_LIBDIR}/${PROJECT_PREFIX}/${CMAKE_BUILD_TYPE}/static)
-set(install_include_dir ${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_PREFIX}/${PROJECT_NAME})
+set(install_config_dir  ${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME})
+set(install_library_dir ${CMAKE_INSTALL_LIBDIR})
+set(install_archive_dir ${CMAKE_INSTALL_LIBDIR})
+set(install_include_dir ${CMAKE_INSTALL_INCLUDEDIR})
 
 include(CMakePackageConfigHelpers)
 set(CXXOPTS_CMAKE_DIR "lib/cmake/cxxopts" CACHE STRING
